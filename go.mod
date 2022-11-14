@@ -1,3 +1,3 @@
 module github.com/brpaz/github-actions-demo-go
 
-go 1.12
+go 1.18
