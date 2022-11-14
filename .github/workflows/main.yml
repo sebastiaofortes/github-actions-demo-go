@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v1
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18
 
@@ -32,12 +32,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v1
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18
 
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Run Unit tests.
         run: make test-coverage
@@ -54,12 +54,12 @@ jobs:
     needs: [lint, test]
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v1
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18
 
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Build
         run: make build
