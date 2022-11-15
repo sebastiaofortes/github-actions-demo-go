@@ -11,7 +11,7 @@ on:
 jobs:
           
   golangci:
-    name: lint
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
@@ -62,10 +62,6 @@ jobs:
       - name: Final.
         run: echo "Texto final"
       
-
-
-          
-
 
   build:
     name: Build
