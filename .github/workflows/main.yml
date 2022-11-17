@@ -43,33 +43,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check Gitflow master
-        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]]; #Check branch name
-             then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'release')}} == "false" ]]; 
+      - name: Check Gitflow hotfix
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]];
+             then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'hotfix')}} == "false" ]]; 
              then echo "'hotfix' prefix required for merge in master"; 
              exit 1; 
              fi; 
+             fi
+      - name: Check Gitflow release
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]];
+             then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'release')}} == "false" ]]; 
+             then echo "'release' prefix required for merge in master"; 
+             exit 1; 
+             fi; 
+             fi       
+      - name: Check Gitflow feature
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "develop" ]];
+             then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'feature')}} == "false" ]]; 
+             then echo "'feature' prefix required for merge in develop"; 
+             exit 1; 
+             fi; 
              fi 
-
-      - name: Check Base release
-        if: ${{ github.event.pull_request.base.ref == 'release' }}
-        run: echo "Is release" 
-
-      - name: Check Base develop
-        if: ${{ github.event.pull_request.base.ref == 'develop' }}
-        run: echo "Is develop" 
-
-      - name: Check prefix release
-        if: ${{ startsWith(github.event.pull_request.head.ref, 'release') }}
-        run: echo ${{ github.event.pull_request.base.ref }}
-
-      - name: Check prefix feature
-        if: ${{ startsWith(github.event.pull_request.head.ref, 'feature') }}
-        run: echo ${{ github.event.pull_request.base.ref }}
-
-      - name: Check prefix hotfix
-        if: ${{ startsWith(github.event.pull_request.head.ref, 'hotfix') }}
-        run: echo ${{ github.event.pull_request.base.ref }}
 
 
   build:
