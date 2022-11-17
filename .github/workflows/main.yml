@@ -45,7 +45,8 @@ jobs:
 
       - name: Ubuntu
         run: if [[ ${{ github.event.pull_request.base.ref }} == "releaseE" ]]; 
-             then echo "Is release"; fi 
+             then if [[ ${{ github.event.pull_request.base.ref }} == "releaseE" ]]; 
+             then echo "Is release"; fi; fi 
 
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
