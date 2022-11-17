@@ -1,21 +1,27 @@
-name: Gitflow
-on: 
-  # To create pull requests.
-  push:
-  # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
-  pull_request_review:
-  check_run:
-    types: [completed]
+name: Gitflow Finish Feature
 
-permissions:
-  contents: read
-  pull-requests: write
-  
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  pull_request:
+    branches: [ main ]
+    types: [closed]
+
 jobs:
-  build:
-    name: Gitflow
+  gitflow-finish:
     runs-on: ubuntu-latest
     steps:
-    - uses: Logerfo/gitflow-action@0.0.5
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
+      - uses: mdwhitten/gitflow-finish-action@v1.2.0
+        with:
+            pr-num: ${{ github.event.number }}
+            token: ${{ secrets.GITHUB_TOKEN }}
+            repo-name: ${{ github.repository }}
+            # Sets whether to delete the release/hotfix branch after completing all giftlow actions
+            del-rel-branch: true
+            # Optional - sets whether to merge the release/hotfix branch back into the development branch automatically.
+            merge-into-dev: true
+            # Optional - the name of the development branch to merge the release/hotfix branch into.
+            dev-branch-name: develop
+            # Optional - indicates whether to delete the release/hotfix branch after completing all gitflow actions.
+            del-source-branch: true
+            # Optional - text to prepend to the version when creating a tag.
+            tag-prefix: v
