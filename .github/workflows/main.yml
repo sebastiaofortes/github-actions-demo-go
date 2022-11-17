@@ -42,18 +42,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+      env:
+      HEAD: ${{ github.event.pull_request.head.ref }}
+      BASE: ${{ github.event.pull_request.base.ref }}
       - name: Check output
-        run: echo ${{ github.event.pull_request.head.ref }}
+        run: echo "$HEAD"
 
       - name: Check output2
-        run: echo ${{ github.event.pull_request.base.ref }}
-
-      - name: Check output3
-        if: contains(github.event.pull_request.head.ref , ‘test’)
-        run: echo "contém teste"
-
-
+        run: echo "$BASE"
 
   build:
     name: Build
