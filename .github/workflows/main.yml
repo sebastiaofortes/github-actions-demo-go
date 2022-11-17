@@ -44,8 +44,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Ubuntu
-        run: if [[ ${{ github.event.pull_request.base.ref }} == "releaseE" ]]; 
-             then if [[ ${{ github.event.pull_request.base.ref }} == "releaseE" ]]; 
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "release" ]]; 
+             then if [[ ${{ github.event.pull_request.base.ref }} == "release" ]]; 
              then echo "Is release"; fi; fi 
 
       - name: Check Base release
