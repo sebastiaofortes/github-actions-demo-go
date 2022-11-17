@@ -49,8 +49,8 @@ jobs:
       - name: Check output2
         run: echo ${{ github.event.pull_request.base.ref }}
 
-      - name: Check output2
-        if: "contains(github.event.pull_request.head.ref, 'test')"
+      - name: Check output3
+        if: ${{ github.event.pull_request.head.ref == 'test-branch' }}
         run: echo "contém teste"
 
 
