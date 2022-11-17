@@ -44,10 +44,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Ubuntu
-        run: if [[ ${{ github.event.pull_request.base.ref }} == "release" ]]; 
-             then if [[ true ]];
-             then echo "gitflow ok";  
-             fi 
+        run: run: if [[ ${{ github.event.pull_request.base.ref }} == "releaseE" ]]; 
+             then echo "Is release"; fi 
 
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
