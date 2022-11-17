@@ -46,7 +46,7 @@ jobs:
       - name: Ubuntu
         run: if [[ ${{ github.event.pull_request.base.ref }} == "release" ]]; 
              then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'release')}} == "false" ]]; 
-             then echo "Is release"; fi; fi 
+             then echo "Is release"; exit 1; fi; fi 
 
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
