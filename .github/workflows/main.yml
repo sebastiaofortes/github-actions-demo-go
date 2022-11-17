@@ -43,6 +43,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Ubuntu
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "release" ]] then echo "version tag is ${v}" fi
+
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
         run: echo "Is release" 
