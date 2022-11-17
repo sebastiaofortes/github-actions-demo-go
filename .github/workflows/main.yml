@@ -52,7 +52,7 @@ jobs:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
-        run: |
+        run:
         echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
 
 
