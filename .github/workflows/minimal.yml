@@ -1,21 +1,17 @@
-name: Gitflow
-on: 
-  # To create pull requests.
-  push:
-  # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
-  pull_request_review:
-  check_run:
-    types: [completed]
+name: Check PR
 
-permissions:
-  contents: read
-  pull-requests: write
-  
+on:
+  # WARNING: Make sure to never check out, build or run untrusted code with the 'pull_request_target' event.
+  # See: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#pull_request_target
+  pull_request_target:
+    types: [opened, edited]
+
 jobs:
-  build:
-    name: Gitflow
+
+  check-branches:
+    name: Check base branch and branch name
     runs-on: ubuntu-latest
     steps:
-    - uses: Logerfo/gitflow-action@0.0.5
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
+      - uses: semestry/git-flow-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
