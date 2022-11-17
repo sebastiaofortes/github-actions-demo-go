@@ -38,17 +38,17 @@ jobs:
       - name: Run unit Tests.
         run: go test -cover -race -vet=off ./...
       
-  Minimum:
-    name: Minimum
+  example:
     runs-on: ubuntu-latest
     steps:
-      - name: Get branch names.
-        id: branch-names
-        uses: tj-actions/branch-names@v6
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ steps.branch-names.outputs.head_ref_branch }}
 
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.short_ref }}
 
 
 
