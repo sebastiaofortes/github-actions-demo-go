@@ -42,14 +42,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      env:
-      HEAD: ${{ github.event.pull_request.head.ref }}
-      BASE: ${{ github.event.pull_request.base.ref }}
+
       - name: Check output
-        run: echo "$HEAD"
+        run: echo ${{ github.event.pull_request.head.ref }}
 
       - name: Check output2
-        run: echo "$BASE"
+        run: echo ${{ github.event.pull_request.base.ref }}
+
+
 
   build:
     name: Build
