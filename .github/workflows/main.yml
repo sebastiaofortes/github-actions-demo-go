@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Check Gitflow master
-        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]]; 
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]]; #Check branch name
              then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'release')}} == "false" ]]; 
              then echo "'hotfix' prefix required for merge in master"; 
              exit 1; 
