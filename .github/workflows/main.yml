@@ -43,13 +43,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check output
-        run: echo ${{ github.event.pull_request.head.ref }}
-
-      - name: Check output2
+      - name: Check release
+        if: ${{ startsWith(github.event.pull_request.head.ref, 'release') }}
         run: echo ${{ github.event.pull_request.base.ref }}
-      - name: Check output3
-        if: ${{ startsWith(github.event.pull_request.base.ref, 'erro') }}
+
+      - name: Check feature
+        if: ${{ startsWith(github.event.pull_request.head.ref, 'feature') }}
+        run: echo ${{ github.event.pull_request.base.ref }}
+
+      - name: Check hotfix
+        if: ${{ startsWith(github.event.pull_request.head.ref, 'hotfix') }}
         run: echo ${{ github.event.pull_request.base.ref }}
 
 
