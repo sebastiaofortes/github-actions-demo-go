@@ -45,10 +45,7 @@ jobs:
 
       - name: Ubuntu
         run: | 
-        if [[ ${{ github.event.pull_request.base.ref }} ]] 
-        then 
         echo "version tag is" 
-        fi
 
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
