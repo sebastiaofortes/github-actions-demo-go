@@ -49,7 +49,7 @@ jobs:
       - name: Check output2
         run: echo ${{ github.event.pull_request.base.ref }}
 
-       name: Check output2
+      - name: Check output2
         if: "contains(github.event.pull_request.head.ref, 'test')"
         run: echo "contém teste"
 
