@@ -43,10 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Ubuntu
-        run: if [[ ${{ github.event.pull_request.base.ref }} == "release" ]]; 
+      - name: Check Gitflow master
+        run: if [[ ${{ github.event.pull_request.base.ref }} == "master" ]]; 
              then if [[ ${{ startsWith(github.event.pull_request.head.ref, 'release')}} == "false" ]]; 
-             then echo "\'hotfix\' prefix required for merge in master"; exit 1; fi; fi 
+             then echo "'hotfix' prefix required for merge in master"; exit 1; fi; fi 
 
       - name: Check Base release
         if: ${{ github.event.pull_request.base.ref == 'release' }}
