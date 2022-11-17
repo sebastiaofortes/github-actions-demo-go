@@ -42,14 +42,12 @@ jobs:
     name: Minimum
     runs-on: ubuntu-latest
     steps:
-         - name: Get branch names
-        id: branch-name
+      - name: Get branch names.
+        id: branch-names
         uses: tj-actions/branch-names@v6
-
-      - name: Current branch name
-        run:
-          echo "${{ steps.branch-name.outputs.current_branch }}"
-        # Outputs: "main" the branch that triggered the push event.
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.branch-names.outputs.head_ref_branch }}
 
 
 
