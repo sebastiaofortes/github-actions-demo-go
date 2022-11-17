@@ -49,7 +49,7 @@ jobs:
       - name: Check output2
         run: echo ${{ github.event.pull_request.base.ref }}
       - name: Check output3
-        if: ${{ success() }}
+        if: ${{ startsWith('Hello world', 'He') }}
         run: echo ${{ github.event.pull_request.base.ref }}
 
 
