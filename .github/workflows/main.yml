@@ -50,6 +50,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+
 
 
   build:
