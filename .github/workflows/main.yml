@@ -78,9 +78,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      #- name: Verify if job has failed
-      #  if: ${{ failure() }}
-      #  run: echo "anterior job as failded"
+      - name: Verify if job has failed
+        run: echo ${{ failure() }}
+      
 
       - name: Build
         run: go build -v ./...
